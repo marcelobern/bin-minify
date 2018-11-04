@@ -1,0 +1,15 @@
+{
+  "folders": [
+    "/folder"
+  ],
+  "pack": {
+    "/duplicate.txt": [
+      "/hardlink2.txt",
+      "/hardlink.txt",
+      "/regular_file.txt",
+      "/softlink.txt"
+    ],
+    "/folder/unique.txt": []
+  },
+  "notFound": []
+}

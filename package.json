@@ -1,0 +1,61 @@
+{
+  "name": "bin-minify",
+  "version": "0.0.0",
+  "description": "Add non-standard binaries to your projects.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/botbits/bin-minify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/botbits/bin-minify/issues"
+  },
+  "homepage": "https://github.com/botbits/bin-minify#readme",
+  "author": "BotBits (https://github.com/botbits/)",
+  "keywords": [
+    "serverless",
+    "binary",
+    "aws",
+    "lambda",
+    "filesystem",
+    "fs",
+    "minify",
+    "compact",
+    "pack",
+    "package"
+  ],
+  "engines": {
+    "node": ">=8"
+  },
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "mocha",
+    "test-integration": "TEST_TYPE=integration npm test",
+    "test-capture": "TEST_TYPE=capture npm test",
+    "test-with-coverage": "nyc npm test && nyc report --reporter=text-lcov > ./lcov.info"
+  },
+  "dependencies": {
+    "del": "^3.0.0",
+    "file-dedupe": "^0.1.0",
+    "filecompare": "^1.0.4",
+    "fs-extra": "^7.0.0",
+    "fs-tree-diff": "^1.0.0",
+    "javascript-natural-sort": "^0.7.1",
+    "lodash": "^4.17.11",
+    "miniq": "^1.0.1",
+    "trash": "^4.3.0",
+    "walk-sync": "^0.3.3"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "coveralls": "^3.0.2",
+    "eslint": "^5.4.0",
+    "mocha": "^5.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
+    "mock-fs": "^4.7.0",
+    "nyc": "^13.0.1",
+    "sinon": "^7.1.0"
+  }
+}
