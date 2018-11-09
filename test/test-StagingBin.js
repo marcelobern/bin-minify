@@ -4,6 +4,7 @@
 const fs = require('fs');
 const mockFs = require('mock-fs');
 const path = require('path');
+const tmp = require('tmp');
 
 var responses = require('./utils/responses');
 const RESULTS_PATH = path.resolve(__dirname, path.join('data', 'mock-bin.json'));
@@ -29,6 +30,7 @@ chai.config.includeStack = true;
 const StagingBin = require('../index').StagingBin;
 const RuntimeBin = require('../index').RuntimeBin;
 
+const BIN_PATH = 'bin-minify';
 const TARGET_PATH = path.resolve(__dirname, path.join('data', 'mock-bin'));
 const MIN_PACK = require(`${TARGET_PATH}.json`);
 //const TASKS = require(path.resolve(__dirname, path.join('data', 'result.js'))).tasks;
@@ -160,8 +162,10 @@ describe('StagingBin', () => {
         targetPath: TARGET_PATH,
         minPack: MIN_PACK,
       });
-      const random = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-      originPath = path.resolve(__dirname, path.join('tmp', random));
+      tmp.dir({ unsafeCleanup: true }, (err, tmpBasePath) => {
+        if (err) console.error(`Could not create temp dir: ${err}`); // eslint-disable-line no-console
+        else originPath = path.join(tmpBasePath, BIN_PATH);
+      });
     });
 
     it('contents of bin path and links path match', (done) => {
