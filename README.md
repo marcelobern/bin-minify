@@ -9,7 +9,7 @@
 
 ## Stable Release
 
-You are reading the documentation for the next release of bin-minify, which should be 0.1.0. Please see [CHANGELOG](CHANGELOG.md) and make sure to read [UPGRADING](UPGRADING.md) when upgrading from a previous version. The current stable release is [0.0.0](https://github.com/botbits/bin-minify/tree/v0.0.0).
+You are reading the documentation for the stable release of bin-minify, 0.1.0. Please see [CHANGELOG](CHANGELOG.md) and make sure to read [UPGRADING](UPGRADING.md) when upgrading from a previous version.
 
 
 ## Overview
@@ -34,6 +34,30 @@ $ npm install --save bin-minify
 
 
 ## Usage
+
+### Streamlined Staging
+
+It is typically preferred to use the streamlined staging in conjunction with `gulp` or `grunt`.
+
+The following `gulp` task will analyze all binaries under `./bin/my-bin`, save the resulting ***minPack*** to `./.bin-minify/my-bin.json`, and remove any redundant binaries from `./bin/my-bin`.
+
+```js
+const gulp = require('gulp');
+const file = require('gulp-file');
+const path = require('path');
+const stagingWorkflow = require('bin-minify').stagingWorkflow;
+
+gulp.task('default', async (done) => {
+  stagingWorkflow(path.resolve(__dirname, path.join('bin', 'my-bin'))).then(minPack => {
+    file('my-bin.json', JSON.stringify(minPack, null, ' '), {src: true})
+      .pipe(gulp.dest('.bin-minify'));
+    done();
+  }, error => {
+    console.error(`Could not create minPack: ${error}`);
+    done();
+  });
+});
+```
 
 ### Staging
 
@@ -287,6 +311,59 @@ Base path where the original file structure of the binaries will be recreated.
 Resolved Promise: `{ loaded: true or false }`. `loaded` will be:
 - `true` if the file structure was successfully created.
 - `false` if the `fromBase` path already existed.
+
+Rejected Promise: `{ error }`.
+
+## Promise stagingWorkflow (targetPath, minifyBinOptions)
+
+### targetPath
+
+- Type: `string`
+- Default: `./bin/bin-minify`
+
+Location of the actual binaries.
+
+**Note**: Typically the binaries under `targetPath` are source controlled (and should be included in the npm module or Lambda package).
+
+### minifyBinOptions
+
+- Type: `Object`
+- Optional
+
+The following are supported keys in the `minifyBinOptions` JSON object. Any other keys are ignored.
+
+#### dryRun
+
+- Type: `boolean`
+- Default: `false`
+
+If `true`, will not remove redundant files under `targetPath`.
+
+If `false`, redundant files under `targetPath` will be handled according to `minifyBinOptions.sendToTrash`.
+
+#### strict
+
+- Type: `boolean`
+- Default: `false`
+
+If `true`, will only remove redundant files under `targetPath` if no difference exists between original and reconstructed binaries.
+
+If `false`, will only remove redundant files under `targetPath` if only difference between original and reconstructed binaries are empty folders.
+
+#### sendToTrash
+
+- Type: `boolean`
+- Default: `false`
+
+If `true`, all redundant files under `targetPath` will be removed by sending them to the trash.
+
+If `false`, all redundant files under `targetPath` will be permanently removed.
+
+### returns Promise
+
+Resolved Promise: ***minPack*** JSON.
+
+**Note**: It is recommended to store this ***minPack*** JSON to a source controlled file for future use.
 
 Rejected Promise: `{ error }`.
 

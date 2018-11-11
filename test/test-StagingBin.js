@@ -2,20 +2,21 @@
 'use strict';
 
 const fs = require('fs');
-const mockFs = require('mock-fs');
 const path = require('path');
 const tmp = require('tmp');
 
+const prepareFs = require('./utils/fsUtils').prepareFs;
 var responses = require('./utils/responses');
-const RESULTS_PATH = path.resolve(__dirname, path.join('data', 'mock-bin.json'));
+const RESULTS_PATH = path.resolve(__dirname, 'data', 'mock-bin.json');
 const RESULTS = require(RESULTS_PATH);
 
 var shouldCapture = (testType) => ['capture'].includes(testType);
+var shouldMock = (testType) => ['unit'].includes(testType);
 
 /*
  * Configurable test suite parameters
  */
-const TEST_TYPE = ['unit', 'integration', 'capture'].includes(process.env.TEST_TYPE) ? process.env.TEST_TYPE : 'unit';
+const TEST_TYPE = ['unit', 'integration', 'capture'].includes(process.env.TEST_TYPE) ? process.env.TEST_TYPE : 'integration';
 // TEST_TYPE = 'unit' will run unit tests locally (completes in milliseconds). This is the default value.
 // TEST_TYPE = 'integration' will run integration tests against local filesystem (completes in milliseconds).
 // TEST_TYPE = 'capture' same as integration plus will capture the responses for future unit tests.
@@ -33,7 +34,6 @@ const RuntimeBin = require('../index').RuntimeBin;
 const BIN_PATH = 'bin-minify';
 const TARGET_PATH = path.resolve(__dirname, path.join('data', 'mock-bin'));
 const MIN_PACK = require(`${TARGET_PATH}.json`);
-//const TASKS = require(path.resolve(__dirname, path.join('data', 'result.js'))).tasks;
 
 describe('StagingBin', () => {
   var stagingBin;
@@ -183,26 +183,7 @@ describe('StagingBin', () => {
   });
 
   describe('#minifyBin()', () => {
-    beforeEach(() => {
-      mockFs({
-        [path.join(__dirname, 'data', 'mock-bin')]: {
-          'duplicate.txt': 'abc',
-          'hardlink.txt': 'abc',
-          'hardlink2.txt': 'abc',
-          'regular_file.txt': 'abc',
-          'softlink.txt': mockFs.symlink({
-            path: 'regular_file.txt'
-          }),
-          'folder': {
-            'unique.txt': 'xyz',
-          },
-        },
-      });
-    });
-
-    after(() => {
-      mockFs.restore();
-    });
+    prepareFs(shouldMock(TEST_TYPE), TARGET_PATH);
 
     it('successfully removes the original files', () => {
       return expect(stagingBin.minifyBin(false)).to.eventually.eql({
@@ -219,7 +200,7 @@ describe('StagingBin', () => {
       });
     });
 
-    it.skip('successfully send the original files to the trash', () => {
+    it('successfully send the original files to the trash', () => {
       return expect(stagingBin.minifyBin(true)).to.eventually.have.property('delCount', 4);
     });
 
@@ -238,7 +219,7 @@ describe('StagingBin', () => {
       });
     });
 
-    it.skip('rejects promise if Promise.all() rejects', (done) => {
+    it('rejects promise if Promise.all() rejects', (done) => {
       const stub = sinon.stub(Promise, 'all').rejects();
       expect(stagingBin.minifyBin(true)).to.be.rejected.notify(done);
       stub.restore();
