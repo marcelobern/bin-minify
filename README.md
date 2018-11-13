@@ -1,16 +1,16 @@
 # bin-minify
 [![NPM Version](https://img.shields.io/npm/v/bin-minify.svg)](https://www.npmjs.com/package/bin-minify)
 [![Build Status](https://travis-ci.org/botbits/bin-minify.svg?branch=master)](https://travis-ci.org/botbits/bin-minify)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/babbedeb3af246c7817085e5a339b0da)](https://www.codacy.com/app/marcelobern/bin-minify?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=botbits/bin-minify&amp;utm_campaign=Badge_Grade)
 [![Coverage Status](https://coveralls.io/repos/github/botbits/bin-minify/badge.svg?branch=master)](https://coveralls.io/github/botbits/bin-minify?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/botbits/bin-minify/badge.svg?targetFile=package.json)](https://snyk.io/test/github/botbits/bin-minify?targetFile=package.json)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbotbits%2Fbin-minify.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fbotbits%2Fbin-minify?ref=badge_shield)
 
 > Add non-standard binaries to your projects.
 
-
 ## Stable Release
 
-You are reading the documentation for the stable release of bin-minify, 0.1.0. Please see [CHANGELOG](CHANGELOG.md) and make sure to read [UPGRADING](UPGRADING.md) when upgrading from a previous version.
-
+You are reading the documentation for the next release of bin-minify, which should be 0.1.0. Please see [CHANGELOG](CHANGELOG.md) and make sure to read [UPGRADING](UPGRADING.md) when upgrading from a previous version. The current stable release is [0.0.0](https://github.com/botbits/bin-minify/tree/v0.0.0).
 
 ## Overview
 
@@ -18,20 +18,17 @@ This module reduces the size of binaries by removing hard/soft links and duplica
 
 This is specially important when needing to *zip* your files, as hard/soft links are not preserved (but replicated) by zipping them.
 
-
 ## Other Uses
 
 While bin-minify was originally created to address use cases involving binaries, its current implementation allows it to be used to solve other use cases (e.g. photo management).
 
 [Please open an issue](https://github.com/botbits/bin-minify/issues) with suggestions on how to use bin-minify to address additional use cases.
 
-
 ## Install
 
-```
+```shell
 $ npm install --save bin-minify
 ```
-
 
 ## Usage
 
@@ -155,7 +152,6 @@ runtimeBin.applyMinPack(fromBase).then(result => {
 
 Consider using [lambda-bin](https://www.npmjs.com/package/lambda-bin) for a smaller module footprint and environment variable helper functions.
 
-
 ## API
 
 ## StagingBin
@@ -167,15 +163,15 @@ Object new StagingBin( Object )
 
 #### options
 
-- Type: `Object`
-- Optional
+-   Type: `Object`
+-   Optional
 
 The following are supported keys in the `options` JSON object. Any other keys are ignored.
 
 ##### targetPath
 
-- Type: `string`
-- Default: `./bin/bin-minify`
+-   Type: `string`
+-   Default: `./bin/bin-minify`
 
 Location of the actual binaries.
 
@@ -183,8 +179,8 @@ Location of the actual binaries.
 
 ##### relativeSymlinks
 
-- Type: `boolean`
-- Default: `true`
+-   Type: `boolean`
+-   Default: `true`
 
 If `true`, the symlinks found will be interpreted as relative to their current location.
 
@@ -192,8 +188,8 @@ If `false` the symlinks found will be interpreted as absolute paths.
 
 ##### minPack
 
-- Type: `Object`
-- Default: `{}`
+-   Type: `Object`
+-   Default: `{}`
 
 Used to *load* a previously created ***minPack***.
 
@@ -215,8 +211,8 @@ Rejected Promise: `{ error }`.
 
 #### linksPath
 
-- Type: `string`
-- Default: `/tmp/bin-minify`
+-   Type: `string`
+-   Default: `/tmp/bin-minify`
 
 Compares the files under `linksPath` to the ones under `stagingBin.targetPath`.
 
@@ -232,8 +228,8 @@ Rejected Promise: `{ error }`.
 
 #### sendToTrash
 
-- Type: `boolean`
-- Default: `false`
+-   Type: `boolean`
+-   Default: `false`
 
 If `true`, all redundant files under `stagingBin.targetPath` will be removed by sending them to the trash.
 
@@ -267,15 +263,15 @@ Object new RuntimeBin( Object )
 
 #### options
 
-- Type: `Object`
-- Optional
+-   Type: `Object`
+-   Optional
 
 The following are supported keys in the `options` JSON object. Any other keys are ignored.
 
 ##### targetPath
 
-- Type: `string`
-- Default: `./bin/bin-minify`
+-   Type: `string`
+-   Default: `./bin/bin-minify`
 
 Location of the actual binaries.
 
@@ -283,8 +279,8 @@ Location of the actual binaries.
 
 ##### useSymlinks
 
-- Type: `boolean`
-- Default: `true`
+-   Type: `boolean`
+-   Default: `true`
 
 If `true`, invoking `runtimeBin.applyMinPack()` will create symlinks (a.k.a. soft links).
 
@@ -292,8 +288,8 @@ If `false`, invoking `runtimeBin.applyMinPack()` will create hard links.
 
 ##### minPack
 
-- Type: `Object`
-- Default: `{}`
+-   Type: `Object`
+-   Default: `{}`
 
 Used to *load* a previously created ***minPack***.
 
@@ -301,16 +297,16 @@ Used to *load* a previously created ***minPack***.
 
 #### fromBase
 
-- Type: `string`
-- Required
+-   Type: `string`
+-   Required
 
 Base path where the original file structure of the binaries will be recreated.
 
 #### returns Promise
 
 Resolved Promise: `{ loaded: true or false }`. `loaded` will be:
-- `true` if the file structure was successfully created.
-- `false` if the `fromBase` path already existed.
+-   `true` if the file structure was successfully created.
+-   `false` if the `fromBase` path already existed.
 
 Rejected Promise: `{ error }`.
 
@@ -318,8 +314,8 @@ Rejected Promise: `{ error }`.
 
 ### targetPath
 
-- Type: `string`
-- Default: `./bin/bin-minify`
+-   Type: `string`
+-   Default: `./bin/bin-minify`
 
 Location of the actual binaries.
 
@@ -327,15 +323,15 @@ Location of the actual binaries.
 
 ### minifyBinOptions
 
-- Type: `Object`
-- Optional
+-   Type: `Object`
+-   Optional
 
 The following are supported keys in the `minifyBinOptions` JSON object. Any other keys are ignored.
 
 #### dryRun
 
-- Type: `boolean`
-- Default: `false`
+-   Type: `boolean`
+-   Default: `false`
 
 If `true`, will not remove redundant files under `targetPath`.
 
@@ -343,8 +339,8 @@ If `false`, redundant files under `targetPath` will be handled according to `min
 
 #### strict
 
-- Type: `boolean`
-- Default: `false`
+-   Type: `boolean`
+-   Default: `false`
 
 If `true`, will only remove redundant files under `targetPath` if no difference exists between original and reconstructed binaries.
 
@@ -352,8 +348,8 @@ If `false`, will only remove redundant files under `targetPath` if only differen
 
 #### sendToTrash
 
-- Type: `boolean`
-- Default: `false`
+-   Type: `boolean`
+-   Default: `false`
 
 If `true`, all redundant files under `targetPath` will be removed by sending them to the trash.
 
@@ -367,13 +363,11 @@ Resolved Promise: ***minPack*** JSON.
 
 Rejected Promise: `{ error }`.
 
-
 ## Performance
 
 The *run-time* code has been tuned to speed up its operation.
 
 Check out this [sample](https://github.com/botbits/lambda-bin-perf#readme) (uses [serverless](https://www.npmjs.com/package/serverless) & [artillery](https://www.npmjs.com/package/artillery)) if you are interested in checking the bin-minify & lambda-bin performance impact to your code.
-
 
 ## License
 

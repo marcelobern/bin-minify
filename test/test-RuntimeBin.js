@@ -21,7 +21,7 @@ describe('RuntimeBin', () => {
   var runtimeBin
     , originPath;
 
-  beforeEach(() => {
+  beforeEach((done) => {
     runtimeBin = new RuntimeBin({
       useSymlinks: true,
       targetPath: TARGET_PATH,
@@ -30,6 +30,7 @@ describe('RuntimeBin', () => {
     tmp.dir({ unsafeCleanup: true }, (err, tmpBasePath) => {
       if (err) console.error(`Could not create temp dir: ${err}`); // eslint-disable-line no-console
       else originPath = path.join(tmpBasePath, BIN_PATH);
+      done();
     });
   });
 
