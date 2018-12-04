@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/botbits/bin-minify.svg?branch=master)](https://travis-ci.org/botbits/bin-minify)
 [![Coverage Status](https://coveralls.io/repos/github/botbits/bin-minify/badge.svg?branch=master)](https://coveralls.io/github/botbits/bin-minify?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/botbits/bin-minify/badge.svg?targetFile=package.json)](https://snyk.io/test/github/botbits/bin-minify?targetFile=package.json)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmarcelobern%2Fbin-minify.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmarcelobern%2Fbin-minify?ref=badge_shield)
 
 > Add non-standard binaries to your projects.
 
@@ -378,3 +379,6 @@ Check out this [sample](https://github.com/botbits/lambda-bin-perf#readme) (uses
 ## License
 
 MIT © [BotBits<sup>SM</sup>](https://github.com/botbits)
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmarcelobern%2Fbin-minify.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmarcelobern%2Fbin-minify?ref=badge_large)
