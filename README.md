@@ -10,7 +10,7 @@
 
 ## Stable Release
 
-You are reading the documentation for the next release of bin-minify, which should be 0.1.0. Please see [CHANGELOG](CHANGELOG.md) and make sure to read [UPGRADING](UPGRADING.md) when upgrading from a previous version. The current stable release is [0.0.0](https://github.com/botbits/bin-minify/tree/v0.0.0).
+You are reading the documentation for the stable release of bin-minify, 0.1.1. Please see [CHANGELOG](CHANGELOG.md) and make sure to read [UPGRADING](UPGRADING.md) when upgrading from a previous version.
 
 ## Overview
 
