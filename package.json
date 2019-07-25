@@ -45,7 +45,7 @@
     "file-dedupe": "^0.1.0",
     "filecompare": "^1.0.4",
     "fs-extra": "^7.0.0",
-    "fs-tree-diff": "^1.0.0",
+    "fs-tree-diff": "^1.0.2",
     "javascript-natural-sort": "^0.7.1",
     "lodash": "^4.17.14",
     "miniq": "^1.0.1",
