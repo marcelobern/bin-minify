@@ -52,7 +52,7 @@
     "tmp": "0.0.33",
     "trash": "^4.3.0",
     "walk-sync": "^0.3.3",
-    "snyk": "^1.192.3"
+    "snyk": "^1.195.1"
   },
   "devDependencies": {
     "chai": "^4.1.2",
