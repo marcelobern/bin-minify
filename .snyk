@@ -8,3 +8,8 @@ patch:
         patched: '2019-07-08T03:15:40.913Z'
     - async > lodash:
         patched: '2019-07-08T03:15:40.913Z'
+  SNYK-JS-HTTPSPROXYAGENT-469131:
+    - snyk > proxy-agent > https-proxy-agent:
+        patched: '2019-10-07T03:20:43.274Z'
+    - snyk > proxy-agent > pac-proxy-agent > https-proxy-agent:
+        patched: '2019-10-07T03:20:43.274Z'
