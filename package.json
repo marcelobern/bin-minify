@@ -47,7 +47,7 @@
     "fs-extra": "^7.0.0",
     "fs-tree-diff": "^1.0.2",
     "javascript-natural-sort": "^0.7.1",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.17",
     "miniq": "^1.0.1",
     "tmp": "0.0.33",
     "trash": "^4.3.0",
