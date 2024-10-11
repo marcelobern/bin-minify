@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "async": "^2.6.2",
-    "del": "^3.0.0",
+    "del": "^8.0.0",
     "file-dedupe": "^0.1.0",
     "filecompare": "^1.0.4",
     "fs-extra": "^7.0.0",
